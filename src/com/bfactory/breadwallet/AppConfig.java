@@ -1,11 +1,13 @@
 package com.bfactory.breadwallet;
 
-import android.database.sqlite.SQLiteDatabase;
+import android.content.Context;
 
 public class AppConfig {
 	private static AppConfig _instance = new AppConfig();
 	
 	//private SQLiteDatabase db;
+	
+	public DictionaryOpenHelper configDict;
 	
 	private AppConfig() {
 		
@@ -15,8 +17,8 @@ public class AppConfig {
 		return _instance;
 	}
 	
-	public boolean initiate(String configPath) {
-		SQLiteDatabase.openOrCreateDatabase(configPath, null);
+	public boolean initiate(Context context) {
+		AppConfig.getInstance().configDict = new DictionaryOpenHelper(context);
 		
 		return true;
 	}
